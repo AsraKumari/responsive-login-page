@@ -1,3 +1,4 @@
+/* Reset some default styles */
 * {
   margin: 0;
   padding: 0;
@@ -5,8 +6,10 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/* Body Styles */
 body {
   min-height: 100vh;
+  background-color: #0d0d0d; /* fallback while image loads */
   background: url('coverpage.jpg') no-repeat center center/cover;
   display: flex;
   justify-content: center;
@@ -15,6 +18,7 @@ body {
   transition: background 0.5s ease;
 }
 
+/* Theme toggle styles */
 .theme-toggle {
   position: absolute;
   top: 20px;
@@ -25,15 +29,30 @@ body {
   z-index: 10;
 }
 
+/* Icon Color Styles */
 .icon-label {
   font-size: 22px;
-  color: #fff;
+  color: #fff; /* Default icon color (for night mode) */
 }
 
 .icon-label i img {
   width: 24px;
   height: 24px;
-  filter: invert(1);
+}
+
+/* Day Mode Icon Color */
+body:not(.dark-mode) .icon-label i img {
+  filter: brightness(0) invert(1); /* White icon color in day mode */
+}
+
+/* Dark Mode Icon Color */
+body.dark-mode .icon-label i img {
+  filter: brightness(0) invert(0); /* Normal icon color in night mode */
+}
+
+/* Icon hover effect to make it stand out */
+.icon-label:hover {
+  color: #ffd700; /* A slight gold color on hover for both modes */
 }
 
 .switch {
@@ -81,6 +100,7 @@ input:checked + .slider:before {
   transform: translateX(30px);
 }
 
+/* Login wrapper styles */
 .wrapper {
   width: 400px;
   padding: 30px 40px;
@@ -98,6 +118,7 @@ input:checked + .slider:before {
   margin-bottom: 20px;
 }
 
+/* Input Box Styles */
 .input-box {
   position: relative;
   margin: 20px 0;
@@ -113,27 +134,52 @@ input:checked + .slider:before {
   color: #000;
 }
 
+/* Placeholder Text Colors */
+::placeholder {
+  color: #aaa; /* Default placeholder color (for day mode) */
+}
+
+/* Day Mode */
+body:not(.dark-mode) ::placeholder {
+  color: black; /* Day mode placeholder text color (black) */
+}
+
+/* Night Mode */
+body.dark-mode ::placeholder {
+  color: white; /* Night mode placeholder text color (white) */
+}
+
+/* Input Icon Styles */
 .input-box i {
   position: absolute;
   left: 15px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 18px;
-}
-
-.input-box i img {
-  width: 18px;
-  height: 18px;
-  filter: invert(1);
   cursor: pointer;
 }
 
+.input-box .toggle-password {
+  position: absolute;
+  right: 15px; /* Right side of the input */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.input-box .toggle-password img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Remember me and forgot password styles */
 .remember-forgot {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
 }
 
+/* Button Styles */
 .btn {
   width: 100%;
   padding: 12px;
@@ -158,6 +204,7 @@ input:checked + .slider:before {
   text-decoration: none;
 }
 
+/* Dark Mode Styles */
 body.dark-mode .wrapper {
   background-color: rgba(17, 25, 40, 0.75);
   color: #fff;
@@ -173,9 +220,4 @@ body.dark-mode .remember-forgot {
 body.dark-mode .btn {
   background-color: #fff;
   color: #000;
-}
-
-body.dark-mode .icon-label i img,
-body.dark-mode .input-box i img {
-  filter: invert(0);
 }

@@ -1,17 +1,22 @@
+// Toggle theme mode
 const toggle = document.getElementById("mode-toggle");
 
 toggle.addEventListener("change", () => {
   document.body.classList.toggle("dark-mode");
 });
 
-// Password Show/Hide Feature
-const passwordInput = document.getElementById("password");
-const togglePassword = document.getElementById("toggle-password");
-const icon = togglePassword.querySelector("img");
+// Toggle password visibility
+function togglePassword() {
+  const passwordInput = document.getElementById("password");
+  const toggleIcon = document.getElementById("toggle-icon");
 
-togglePassword.addEventListener("click", () => {
-  const isPassword = passwordInput.type === "password";
-  passwordInput.type = isPassword ? "text" : "password";
-  icon.src = isPassword ? "bx-show.svg" : "bx-hide.svg";
-  icon.alt = isPassword ? "Show Password Icon" : "Hide Password Icon";
-});
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";  // Show the password
+    toggleIcon.src = "bx-hide.svg";  // Change icon to "Hide"
+    toggleIcon.alt = "Hide Password Icon";
+  } else {
+    passwordInput.type = "password";  // Hide the password
+    toggleIcon.src = "bx-show.svg";  // Change icon to "Show"
+    toggleIcon.alt = "Show Password Icon";
+  }
+}
